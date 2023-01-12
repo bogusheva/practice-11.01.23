@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      h1 {
+        text-align: center;
+        font-size: 50px;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 30px;
+      }
+      .traffic-light {
+        border: 3px solid black;
+        padding: 15px;
+      }
+      .red-light,
+      .yellow-light,
+      .green-light {
+        width: 200px;
+        height: 200px;
+        border: 10px solid black;
+        border-radius: 50%;
+      }
+      .red-light.active {
+        background-color: red;
+      }
+      .yellow-light.active {
+        background-color: yellow;
+      }
+      .green-light.active {
+        background-color: green;
+      }
+      .change-light {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background-color: antiquewhite;
+        border: 1px solid black;
+        border-radius: 10px;
+        color: black;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        transition: transform 0.3s ease-in-out;
+      }
+      .change-light:hover {
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Example with traffic-light</h1>
+    <div class="container">
+      <div class="traffic-light">
+        <div class="lights red-light active"></div>
+        <div class="lights yellow-light"></div>
+        <div class="lights green-light"></div>
+      </div>
+      <div class="button-wrapper">
+        <a href="#" class="change-light">Change light</a>
+      </div>
+    </div>
+    <script>
+      let btn = document.querySelector(".change-light");
+      let i = 0;
+      btn.onclick = () => {
+        let reset = document.querySelectorAll(".lights");
+        reset.forEach((el) => {
+          el.classList.remove("active");
+        });
+        if (i++ === 2) i = 0;
+        reset[i].classList.add("active");
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    img {
+      width: 100%;
+    }
+    h1 {
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 60px;
+    }
+    .content {
+      display: grid;
+      gap: 15px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .content-item {
+      display: flex;
+      gap: 10px;
+    }
+    .img-wrapper {
+      flex: 1;
+      overflow: hidden;
+    }
+    .description {
+      flex: 3;
+    }
+    .description h2 {
+      font-size: 40px;
+    }
+    .pre-heading {
+      display: block;
+      font-size: 30px;
+      font-style: italic;
+      text-decoration: underline;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h1>Best rock hits</h1>
+      <ol class="content"></ol>
+    </div>
+    <script>
+      var playList = [
+        {
+          author: "LED ZEPPELIN",
+          song: "STAIRWAY TO HEAVEN",
+          cover:
+            "https://i1.sndcdn.com/artworks-000188953758-0d2twr-t500x500.jpg",
+        },
+
+        {
+          author: "QUEEN",
+          song: "BOHEMIAN RHAPSODY",
+          cover:
+            "https://upload.wikimedia.org/wikipedia/en/6/6c/Bohemian_Rhapsody_soundtrack.jpg",
+        },
+
+        {
+          author: "LYNYRD SKYNYRD",
+          song: "FREE BIRD",
+          cover: "https://m.media-amazon.com/images/I/61yS+SjN6mL._SY1000_.jpg",
+        },
+
+        {
+          author: "DEEP PURPLE",
+          song: "SMOKE ON THE WATER",
+          cover:
+            "https://upload.wikimedia.org/wikipedia/en/3/38/Deep_Purple_-_Smoke_on_the_Water_Coverart.jpg",
+        },
+
+        {
+          author: "JIMI HENDRIX",
+          song: "ALL ALONG THE WATCHTOWER",
+          cover:
+            "https://i.pinimg.com/736x/fc/8d/2f/fc8d2fe479b51db686b936d29229a058.jpg",
+        },
+
+        {
+          author: "AC/DC",
+          song: "BACK IN BLACK",
+          cover:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/ACDC_Back_in_Black_cover.svg/1200px-ACDC_Back_in_Black_cover.svg.png",
+        },
+
+        {
+          author: "QUEEN",
+          song: "WE WILL ROCK YOU",
+          cover:
+            "https://upload.wikimedia.org/wikipedia/en/1/18/We_Will_Rock_You_by_Queen_%281977_French_single%29.png",
+        },
+
+        {
+          author: "METALLICA",
+          song: "ENTER SANDMAN",
+          cover:
+            "https://i1.sndcdn.com/artworks-000024400553-fah0f1-t500x500.jpg",
+        },
+      ];
+
+      let content = document.querySelector(".content");
+      content.innerHTML = " ";
+      playList.map((hit, index) => {
+        content.innerHTML += `
+            <li class="content-item">
+                <div class="img-wrapper">
+                    <img class="cover-img" src="${hit.cover}" alt="#">
+                </div>
+                <div class="description">
+                    <span class="pre-heading">${index + 1} ${hit.author}</span>
+                    <h2>${hit.song}</h2>
+                </div>
+            </li>
+        `;
+      });
+    </script>
+  </body>
+</html>

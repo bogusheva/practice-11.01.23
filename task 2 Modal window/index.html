@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 50px;
+    }
+    .open-button,
+    .close-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      border: 1px solid #000;
+      border-radius: 5px;
+      background-color: aquamarine;
+      color: #000;
+      text-decoration: none;
+      font-weight: 900;
+      text-transform: uppercase;
+      max-width: 150px;
+      margin: 0 auto;
+      font-size: 20px;
+    }
+    .modal-window {
+      border: 1px dotted black;
+      padding: 20px 10px;
+      font-size: 20px;
+      max-width: 900px;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h1>Example with button and modal window</h1>
+      <a href="#" class="open-button">Click me</a>
+      <div class="modal-window" hidden>
+        <h2>This is modal window</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+          doloremque omnis explicabo fuga quisquam, eos, vitae neque dolore, sed
+          mollitia earum eaque iste dolorum ea repellat quidem impedit aut?
+          Reiciendis laborum architecto consequatur laudantium cumque iusto
+          dolorum perspiciatis dignissimos, quis qui quod, obcaecati, quidem ab
+          adipisci voluptatibus assumenda eius quae.
+        </p>
+        <a href="#" class="close-button">Close</a>
+      </div>
+    </div>
+
+    <script>
+      /*Створити HTML-сторінку з кнопкою "Відкрити" і модальним вікном. На модальном вікні повинен бути текст і кнопка "Закрити". Спочатку модальне вікно не відображається. При кліку на кнопку "Відкрити" з'являється модальне вікно, на кнопку "Закрити" — зникає.*/
+      let openBtn = document.querySelector(".open-button");
+      let closeBtn = document.querySelector(".close-button");
+      let modalWindow = document.querySelector(".modal-window");
+      openBtn.onclick = () => {
+        modalWindow.hidden = false;
+      };
+      closeBtn.onclick = () => {
+        modalWindow.hidden = true;
+      };
+    </script>
+  </body>
+</html>
