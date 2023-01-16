@@ -15,6 +15,7 @@ let closeButton = document.querySelector(".close-button");
 let basketSum = document.querySelector(".basket-sum");
 let orderList = document.querySelector(".order-list");
 let basketArray = [];
+let resultSum = 0;
 
 function showArray(array) {
   array.map((element) => {
@@ -50,99 +51,111 @@ function showArray(array) {
     productCardIcon.classList.add("basket-icon");
     let basketItemPrice;
 
-    productCardBasket.onclick = (event) => {
-      let resultSum;
-      event.preventDefault();
-      basketArray.push(element);
-      let counter = 1;
-      let basketItem = document.createElement("div");
-      basketItem.classList.add("basket-item");
-      let basketItemImg = document.createElement("div");
-      basketItemImg.classList.add("basket-item-img");
-      basketItemImg.style.backgroundImage = `url("${element.thumbnail}")`;
-      let basketItemCounter = document.createElement("div");
-      basketItemCounter.classList.add("counter-wrapper");
-      let basketCounterMinus = document.createElement("span");
-      basketCounterMinus.classList.add("counter-minus");
-      basketCounterMinus.innerText = "-";
+    productCardBasket.onclick = (e) => {
+      e.preventDefault();
+      if (!basketArray.includes(element)) {
+        basketArray.push(element);
+        resultSum += Math.round(
+          element.price * (1 - element.discountPercentage / 100)
+        );
+        let counter = 1;
+        let basketItem = document.createElement("div");
+        basketItem.classList.add("basket-item");
+        let basketItemImg = document.createElement("div");
+        basketItemImg.classList.add("basket-item-img");
+        basketItemImg.style.backgroundImage = `url("${element.thumbnail}")`;
+        let basketItemCounter = document.createElement("div");
+        basketItemCounter.classList.add("counter-wrapper");
+        let basketCounterMinus = document.createElement("span");
+        basketCounterMinus.classList.add("counter-minus");
+        basketCounterMinus.innerText = "-";
 
-      basketCounterMinus.onclick = () => {
-        if (counter) {
-          --counter;
+        basketCounterMinus.onclick = () => {
+          if (counter) {
+            --counter;
+            basketCounterValue.innerText = counter;
+            basketItemPrice2.innerText =
+              counter *
+              Math.round(
+                element.price * (1 - element.discountPercentage / 100)
+              );
+            resultSum -= Math.round(
+              element.price * (1 - element.discountPercentage / 100)
+            );
+            basketSum.innerText = resultSum;
+          }
+        };
+
+        let basketCounterValue = document.createElement("span");
+        basketCounterValue.innerText = counter;
+        let basketCounterPlus = document.createElement("span");
+        basketCounterPlus.classList.add("counter-plus");
+        basketCounterPlus.innerText = "+";
+
+        basketCounterPlus.onclick = () => {
+          if (counter < element.stock) ++counter;
           basketCounterValue.innerText = counter;
           basketItemPrice2.innerText =
             counter *
             Math.round(element.price * (1 - element.discountPercentage / 100));
-          resultSum -= Math.round(
+          resultSum += Math.round(
             element.price * (1 - element.discountPercentage / 100)
           );
           basketSum.innerText = resultSum;
-        }
-      };
+        };
 
-      let basketCounterValue = document.createElement("span");
-      basketCounterValue.innerText = counter;
-      let basketCounterPlus = document.createElement("span");
-      basketCounterPlus.classList.add("counter-plus");
-      basketCounterPlus.innerText = "+";
+        let basketItemText = document.createElement("div");
+        basketItemText.classList.add("basket-item-text");
+        let basketItemName = document.createElement("span");
+        basketItemName.classList.add("basket-item-name");
+        basketItemName.innerText = element.title;
+        let basketItemBrand = document.createElement("span");
+        basketItemBrand.innerText = element.brand;
+        basketItemBrand.classList.add("basket-item-brand");
+        basketItemPrice = document.createElement("div");
+        basketItemPrice.classList.add("basket-item-price");
+        let basketItemPrice2 = document.createElement("div");
+        basketItemPrice2.classList.add("basket-item-price-multiply");
 
-      basketCounterPlus.onclick = () => {
-        if (counter < element.stock) ++counter;
-        basketCounterValue.innerText = counter;
+        basketItemPrice.innerText = Math.round(
+          element.price * (1 - element.discountPercentage / 100)
+        );
+
         basketItemPrice2.innerText =
           counter *
           Math.round(element.price * (1 - element.discountPercentage / 100));
-        resultSum += Math.round(
-          element.price * (1 - element.discountPercentage / 100)
-        );
+
         basketSum.innerText = resultSum;
-      };
 
-      let basketItemText = document.createElement("div");
-      basketItemText.classList.add("basket-item-text");
-      let basketItemName = document.createElement("span");
-      basketItemName.classList.add("basket-item-name");
-      basketItemName.innerText = element.title;
-      let basketItemBrand = document.createElement("span");
-      basketItemBrand.innerText = element.brand;
-      basketItemBrand.classList.add("basket-item-brand");
-      basketItemPrice = document.createElement("div");
-      basketItemPrice.classList.add("basket-item-price");
-      let basketItemPrice2 = document.createElement("div");
-      basketItemPrice2.classList.add("basket-item-price-multiply");
+        let deleteItemBtn = document.createElement("span");
+        deleteItemBtn.classList.add("delete-item-button");
+        deleteItemBtn.innerText = "X";
+        deleteItemBtn.onclick = () => {
+          if (counter === 0) {
+            const index = basketArray.indexOf(element);
+            if (index > -1) {
+              basketArray.splice(index, 1);
+            }
+            basketItem.remove();
+          }
+        };
 
-      basketItemPrice.innerText = Math.round(
-        element.price * (1 - element.discountPercentage / 100)
-      );
-
-      basketItemPrice2.innerText =
-        counter *
-        Math.round(element.price * (1 - element.discountPercentage / 100));
-
-      resultSum = basketArray.reduce(
-        (accumulator, currentValue) =>
-          accumulator +
-          Math.round(
-            currentValue.price * (1 - currentValue.discountPercentage / 100)
-          ),
-        0
-      );
-      basketSum.innerText = resultSum;
-
-      basketItemCounter.append(
-        basketCounterMinus,
-        basketCounterValue,
-        basketCounterPlus
-      );
-      basketItemText.append(basketItemName, basketItemBrand);
-      basketItem.append(
-        basketItemImg,
-        basketItemText,
-        basketItemCounter,
-        basketItemPrice,
-        basketItemPrice2
-      );
-      orderList.appendChild(basketItem);
+        basketItemCounter.append(
+          basketCounterMinus,
+          basketCounterValue,
+          basketCounterPlus
+        );
+        basketItemText.append(basketItemName, basketItemBrand);
+        basketItem.append(
+          basketItemImg,
+          basketItemText,
+          basketItemCounter,
+          basketItemPrice,
+          basketItemPrice2,
+          deleteItemBtn
+        );
+        orderList.appendChild(basketItem);
+      }
     };
 
     let productCardBuy = document.createElement("span");

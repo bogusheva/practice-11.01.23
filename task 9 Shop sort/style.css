@@ -153,6 +153,7 @@ ul {
   font-size: 18px;
   background-color: rgb(10, 117, 94);
   color: white;
+  cursor: pointer;
 }
 .input-button {
   display: block;
@@ -221,7 +222,7 @@ ul {
   border: 1px solid rgb(10, 117, 94);
   background-color: white;
   width: 600px;
-  padding: 20px 20px 60px;
+  padding: 20px 10px 60px 20px;
   border-radius: 5px;
 }
 .window-wrapper {
@@ -240,6 +241,25 @@ ul {
 .close-button {
   display: block;
   position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.delete-item-button {
+  visibility: visible;
+  display: block;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: fit-content;
+  font-size: 18px;
+  background-color: rgb(10, 117, 94);
+  color: white;
+  margin-left: 15px;
+  cursor: pointer;
+}
+.order-buy-button {
+  display: block;
+  position: absolute;
+  padding: 20px 40px;
   bottom: 25px;
   right: 50%;
   translate: 50%;
@@ -250,7 +270,7 @@ ul {
   padding: 20px 0;
   font-size: 20px;
   display: grid;
-  grid-template-columns: 2fr 5fr 1fr 2fr 2fr;
+  grid-template-columns: 2fr 5fr 1.5fr 1.5fr 1.5fr 0.5fr;
 }
 .basket-item-img {
   height: 80px;
@@ -282,4 +302,7 @@ ul {
 .counter-plus,
 .counter-minus {
   cursor: pointer;
+}
+.hidden {
+  visibility: hidden;
 }
