@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: bisque;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 2px dotted darkorchid;
+        color: darkorchid;
+        padding: 10px;
+      }
+      h1 {
+        padding: 0;
+        margin: 0;
+      }
+
+      h1 + div {
+        padding: 5px 0 10px;
+      }
+      form {
+        display: flex;
+        gap: 10px;
+      }
+      input {
+        margin: 0 10px;
+      }
+      ol {
+        color: black;
+        max-width: 900px;
+      }
+      li {
+        font-size: 20px;
+        text-transform: capitalize;
+        vertical-align: baseline;
+      }
+      .done {
+        text-decoration: line-through;
+      }
+      .error {
+        color: black;
+        animation: 1s ease-in-out 1s infinite alternate blinking;
+      }
+      .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        background-color: darkorchid;
+        border: none;
+        border-radius: 5px;
+        color: aliceblue;
+      }
+      .remove-button {
+        background-color: darkorchid;
+        border: none;
+        border-radius: 5px;
+        color: aliceblue;
+      }
+      @keyframes blinking {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>It's your todo-list</h1>
+      <div>You have <span class="counter">0</span> things to do</div>
+      <form action="#">
+        <input class="input" type="text" />
+        <button type="submit" class="btn submit">add</button>
+      </form>
+      <div class="error" hidden>Your todo must be more than 3 characters</div>
+      <ol class="todo-list"></ol>
+    </div>
+
+    <script>
+      let input = document.querySelector(".input");
+      let submit = document.querySelector(".submit");
+      let error = document.querySelector(".error");
+      let todoList = document.querySelector(".todo-list");
+      let countText = document.querySelector(".counter");
+      let counter = 0;
+
+      function makeToDoList() {
+        if (input.value.length > 3) {
+          error.hidden = true;
+          let list = document.createElement("li");
+          let check = document.createElement("input");
+          check.setAttribute("type", "checkbox");
+          let removeButton = document.createElement("button");
+          removeButton.classList.add("remove-button");
+          removeButton.innerText = "X";
+          list.innerText = input.value;
+          countText.innerText = ++counter;
+          check.onchange = () => {
+            if (check.checked) {
+              list.classList.add("done");
+              countText.innerText = --counter;
+            } else {
+              list.classList.remove("done");
+              countText.innerText = ++counter;
+            }
+          };
+          removeButton.onclick = () => {
+            list.parentNode.removeChild(list);
+            if (!check.checked) {
+              countText.innerText = --counter;
+            }
+          };
+          list.append(check);
+          list.append(removeButton);
+          todoList.append(list);
+          input.value = "";
+        } else {
+          error.hidden = false;
+        }
+      }
+      submit.onclick = makeToDoList;
+    </script>
+  </body>
+</html>

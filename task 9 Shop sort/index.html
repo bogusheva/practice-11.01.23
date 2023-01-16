@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./index.js" type="module" defer></script>
+    <script src="./products.js" type="module" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="body-container">
+      <h1>Home Sweet Home Store</h1>
+      <section class="store-section">
+        <div class="nav">
+          <a class="nav-btn logo">HSH</a>
+          <button class="nav-btn min-button">From min to max</button>
+          <button class="nav-btn max-button">From max to min</button>
+          <input
+            class="input-button price-from"
+            type="number"
+            id=""
+            placeholder="from $"
+          />
+          <input
+            class="input-button price-to"
+            type="number"
+            id=""
+            placeholder="to $"
+          />
+          <button class="nav-btn search-submit" type="button">Search</button>
+          <button class="nav-btn reset" type="reset">Reset</button>
+          <select class="input-button" name="brands-list" id="select-brands">
+            <option value="all">All brands</option>
+            <option value="Acqua Di Gio">Acqua Di Gio</option>
+            <option value="Al Munakh">Al Munakh</option>
+            <option value="AmnaMart">AmnaMart</option>
+            <option value="Apple">Apple</option>
+            <option value="Arrivals Genuine">Arrivals Genuine</option>
+            <option value="Bake Parlor Big">Bake Parlor Big</option>
+            <option value="Baking Food Items">Baking Food Itemsx</option>
+            <option value="Boho Decor">Boho Decor</option>
+            <option value="BRAVE BULL">Brave Bull</option>
+            <option value="Car Aux">Car Aux</option>
+            <option value="Copenhagen Luxe">Copenhagen Luxe</option>
+            <option value="Cuff Butterfly">Cuff Butterfly</option>
+            <option value="Darojay">Darojay</option>
+            <option value="Dermive">Dermive</option>
+            <option value="Designer Sun Glasses">Designer Sun Glasses</option>
+            <option value="Digital Printed">Digital Printed</option>
+            <option value="Dry Rose">Dry Rose</option>
+            <option value="Eastern Watches">Eastern Watches</option>
+            <option value="Fair & Clear">Fair & Clear</option>
+            <option value="Fashion Jewellery">Fashion Jewellery</option>
+            <option value="Fauji">Fauji</option>
+            <option value="Flying Wooden">Flying Wooden</option>
+            <option value="Fog Scent Xpressio">Fog Scent Xpressio</option>
+            <option value="Furniture Bed Set">Furniture Bed Set</option>
+            <option value="Ghazi Fabric">Ghazi Fabric</option>
+            <option value="Golden">Golden</option>
+            <option value="Hemani Tea">Hemani Tea</option>
+            <option value="HP Pavilion">HP Pavilion</option>
+            <option value="Huawei">Huawei</option>
+            <option value="IELGY fashion">IELGY fashion</option>
+            <option value="Infinix">Infinix</option>
+            <option value="JIEPOLLY">JIEPOLLY</option>
+            <option value="Kitchen Shelf">Kitchen Shelf</option>
+            <option value="LED Lights">LED Lights</option>
+            <option value="Lighting brilliance">Lighting brilliance</option>
+            <option value="Lord-Al-Rehab">Lord-Al-Rehab</option>
+            <option value="L'Oreal Paris">L'Oreal Paris</option>
+            <option value="LouisWill">LouisWill</option>
+            <option value="Luxury Digital">Luxury Digital</option>
+            <option value="Luxury palace">Luxury palace</option>
+            <option value="Maasai Sandals">Maasai Sandals</option>
+            <option value="Mastar watch">Mastar watch</option>
+            <option value="METRO 70cc Motorcycl">METRO 70cc Motorcycle</option>
+            <option value="Microsoft Surface">Microsoft Surface</option>
+            <option value="Multi Purpose">Multi Purpose</option>
+            <option value="Naviforce">Naviforce</option>
+            <option value="Neon LED Light">Neon LED Light</option>
+            <option value="OPPO">OPPO</option>
+            <option value="Professional Wear">Professional Wear</option>
+            <option value="Rattan Outdoor">Rattan Outdoor</option>
+            <option value="Red Micky Mouse">Red Micky Mouse</option>
+            <option value="Rorec White Rice">Rorec White Rice</option>
+            <option value="Royal Mirage">Royal Mirage</option>
+            <option value="Rubber">Rubber</option>
+            <option value="Saaf & Khaas">Saaf & Khaas</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Sandals Flip Flops">Sandals Flip Flops</option>
+            <option value="SKMEI 9117">SKMEI 9117</option>
+            <option value="Soft Cotton">Soft Cotton</option>
+            <option value="Stainless">Stainless</option>
+            <option value="Strap Skeleton">Strap Skeleton</option>
+            <option value="Synthetic Leather">Synthetic Leather</option>
+            <option value="TC Reusable">TC Reusable</option>
+            <option value="The Warehouse">The Warehouse</option>
+            <option value="Top Sweater">Top Sweater</option>
+            <option value="W1209 DC12V">W1209 DC12V</option>
+            <option value="Watch Pearls">Watch Pearls</option>
+            <option value="Vintage Apparel">Vintage Apparel</option>
+            <option value="Xiangle">Xiangle</option>
+          </select>
+          <select
+            class="input-button"
+            name="categories-list"
+            id="select-category"
+          >
+            <option value="all">All categories</option>
+            <option value="smartphones">Smartphones</option>
+            <option value="laptops">Laptops</option>
+            <option value="fragrances">Fragrances</option>
+            <option value="skincare">Skincare</option>
+            <option value="groceries">Groceries</option>
+            <option value="home-decoration">Home decoration</option>
+            <option value="furniture">Furniture</option>
+            <option value="tops">Tops</option>
+            <option value="womens-dresses">Women's dresses</option>
+            <option value="womens-shoes">Women's shoes</option>
+            <option value="mens-shirts">Men's shirts</option>
+            <option value="mens-shoes">Men's shoes</option>
+            <option value="mens-watches">Men's watches</option>
+            <option value="womens-watches">Women's watches</option>
+            <option value="womens-bags">Women's bags</option>
+            <option value="womens-jewellery">Women's jewellery</option>
+            <option value="sunglasses">Sunglasses</option>
+            <option value="automotive">Automotive</option>
+            <option value="motorcycle">Motorcycle</option>
+            <option value="lighting">Lighting</option>
+          </select>
+          <a class="nav-btn main-basket"
+            ><img src="./img/basket.png" alt=""
+          /></a>
+          <div class="basket-window" hidden>
+            <div class="window-wrapper">
+              <h2>Your order is ready:</h2>
+              <div class="order-list"></div>
+              <h3>Summary: <span class="basket-sum">0</span> $</h3>
+              <a href="#" class="nav-btn close-button">Close X</a>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <main class="main">
+            <h2 class="section-heading">Look what we have for you</h2>
+            <ul class="cards-container"></ul>
+          </main>
+        </div>
+      </section>
+    </div>
+    <footer class="footer">
+      <div class="footer-content">
+        <p>Get top deals, latest trends, and more.</p>
+        <input
+          class="input-button registration-input"
+          type="email"
+          placeholder="myemail@gmail.com"
+        />
+        <button class="nav-btn" type="submit">Sign up</button>
+        <a href="#">Privacy Policy</a>
+        <span>Copyright ©2023</span>
+      </div>
+    </footer>
+  </body>
+</html>

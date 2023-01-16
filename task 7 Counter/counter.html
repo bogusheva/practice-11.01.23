@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        width: 100%;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+      h1 {
+        font-size: 30px;
+      }
+      h2 {
+        font-size: 15px;
+        padding: 20px 0;
+      }
+      .body-container {
+        width: 400px;
+        height: 400px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 3px dotted green;
+        padding: 10px 20px;
+      }
+      .counter-wrapper {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 40px;
+      }
+      .minus,
+      .plus {
+        display: flex;
+        gap: 5px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        background-color: green;
+      }
+      .basket-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: green;
+        width: fit-content;
+        font-weight: 900;
+        font-size: 30px;
+      }
+      .basket-img {
+        height: 30px;
+        width: 30px;
+      }
+      .product-item-wrapper {
+        display: flex;
+      }
+      .product-image {
+        width: 50px;
+        height: 50px;
+      }
+      .output {
+        position: absolute;
+        min-height: 400px;
+        background-color: aliceblue;
+        border: 2px dotted green;
+        padding: 10px 30px 70px;
+        width: 600px;
+        top: 0;
+        right: 50%;
+        translate: 50%;
+      }
+      .output h2 {
+        font-size: 30px;
+        padding: 0 0 30px;
+      }
+      .output h3 {
+        font-size: 25px;
+      }
+      .close-btn {
+        position: absolute;
+        bottom: 20px;
+        right: 50%;
+        translate: 50%;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: green;
+        width: fit-content;
+      }
+      .order-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        width: 100%;
+      }
+      .product-item-wrapper {
+        width: 100%;
+        padding: 20px 0;
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+        gap: 20px;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 20px;
+      }
+      .product-description {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      .product-price {
+        text-align: end;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="body-container">
+      <h1>Surprise box</h1>
+      <h2>Add some products in your basket</h2>
+      <div class="counter-wrapper">
+        <span class="minus">-</span>
+        <span class="counter">0</span>
+        <span class="plus">+</span>
+      </div>
+      <h2>Look, what you got in your basket</h2>
+      <div class="basket-btn">
+        <img
+          class="basket-img"
+          src="../task 9 Shop sort/img/basket.png"
+          alt="#"
+        />
+        <span class="basket">0</span>
+      </div>
+      <div class="output" hidden>
+        <h2>Your surprise list:</h2>
+        <div class="order-list"></div>
+        <h3>Summary: <span class="sum-order">0</span> $</h3>
+        <span class="close-btn">Close X</span>
+      </div>
+    </div>
+
+    <script>
+      const productArray = [
+        {
+          id: 1,
+          title: "iPhone 9",
+          description: "An apple mobile which is nothing like apple",
+          price: 549,
+          discountPercentage: 12.96,
+          rating: 4.69,
+          stock: 94,
+          brand: "Apple",
+          category: "smartphones",
+          thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+        },
+        {
+          id: 2,
+          title: "iPhone X",
+          description:
+            "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          price: 899,
+          discountPercentage: 17.94,
+          rating: 5,
+          stock: 34,
+          brand: "Apple",
+          category: "smartphones",
+          thumbnail: "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+        },
+        {
+          id: 3,
+          title: "Samsung Universe 9",
+          description:
+            "Samsung's new variant which goes beyond Galaxy to the Universe",
+          price: 1249,
+          discountPercentage: 15.46,
+          rating: 3.09,
+          stock: 36,
+          brand: "Samsung",
+          category: "smartphones",
+          thumbnail: "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+        },
+        {
+          id: 4,
+          title: "OPPOF19",
+          description: "OPPO F19 is officially announced on April 2021.",
+          price: 280,
+          discountPercentage: 17.91,
+          rating: 2.3,
+          stock: 123,
+          brand: "OPPO",
+          category: "smartphones",
+          thumbnail: "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+        },
+        {
+          id: 5,
+          title: "Huawei P30",
+          description:
+            "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
+          price: 499,
+          discountPercentage: 10.58,
+          rating: 4.09,
+          stock: 32,
+          brand: "Huawei",
+          category: "smartphones",
+          thumbnail: "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
+        },
+        {
+          id: 6,
+          title: "MacBook Pro",
+          description:
+            "MacBook Pro 2021 with mini-LED display may launch between September, November",
+          price: 1749,
+          discountPercentage: 11.02,
+          rating: 4.57,
+          stock: 83,
+          brand: "Apple",
+          category: "laptops",
+          thumbnail: "https://i.dummyjson.com/data/products/6/thumbnail.png",
+        },
+        {
+          id: 7,
+          title: "Samsung Galaxy Book",
+          description:
+            "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
+          price: 1499,
+          discountPercentage: 4.15,
+          rating: 4.25,
+          stock: 50,
+          brand: "Samsung",
+          category: "laptops",
+          thumbnail: "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
+        },
+      ];
+
+      const basketArray = [];
+      let counter = 0;
+
+      let minus = document.querySelector(".minus");
+      let plus = document.querySelector(".plus");
+      let out = document.querySelector(".counter");
+      let basketBtn = document.querySelector(".basket-btn");
+      let basketValue = document.querySelector(".basket");
+      let output = document.querySelector(".output");
+      let orderList = document.querySelector(".order-list");
+      let closeBtn = document.querySelector(".close-btn");
+      let summary = document.querySelector(".sum-order");
+
+      function formBasket(array) {
+        basketValue.innerText = basketArray.length;
+        orderList.innerHTML = "";
+        array.forEach((element) => {
+          orderList.innerHTML += `
+                <div class="product-item-wrapper">
+                    <div class="product-img">
+                        <img src="${element.thumbnail}" alt="#">
+                    </div>
+                    <div class="product-description">
+                        <h3 class="product-name">${element.title}</h3>
+                        <h4 class="product-name">${element.brand}</h3>
+                    </div>
+                    <div class="product-price">${element.price} S</div>
+                </div>
+            `;
+        });
+        let result = basketArray.reduce(
+          (accumulator, currentValue) => accumulator + currentValue.price,
+          0
+        );
+        summary.innerText = result;
+      }
+
+      plus.onclick = () => {
+        if (counter < productArray.length) {
+          counter++;
+          out.innerHTML = counter;
+          basketArray.push(productArray[counter - 1]);
+          formBasket(basketArray);
+        }
+      };
+      minus.onclick = () => {
+        if (counter > 0) {
+          counter--;
+          out.innerHTML = counter;
+          basketArray.pop(productArray[counter - 1]);
+          formBasket(basketArray);
+        }
+      };
+      basketBtn.onclick = () => {
+        output.hidden = false;
+      };
+      closeBtn.onclick = () => {
+        output.hidden = true;
+      };
+    </script>
+  </body>
+</html>

@@ -168,17 +168,17 @@
       button.forEach((item, index) => {
         item.onclick = () => {
           petContainer.innerHTML = `
-            <div class="image-wrapper">
-                <img class="pet-img" src=${pets[index].url} alt=""> 
-            </div>
-            <div class="description-wrapper">  
-                <h3 class="pet-name">${pets[index].name}</h3>                
-                <div class="pet-price">${pets[index].price}</div>
-                <p class="pet-description">${pets[index].description}</p>
-                <h5 class="pet-location">${pets[index].location}</h5>
-                <a href="#" class="pet-contacts">Контакт:<br/> ${pets[index].contacts}</a>
-            </div>
-                `;
+                        <div class="image-wrapper">
+                            <img class="pet-img" src=${pets[index].url} alt="">
+                        </div>
+                        <div class="description-wrapper">
+                            <h3 class="pet-name">${pets[index].name}</h3>
+                            <div class="pet-price">${pets[index].price}</div>
+                            <p class="pet-description">${pets[index].description}</p>
+                            <h5 class="pet-location">${pets[index].location}</h5>
+                            <a href="#" class="pet-contacts">Контакт:<br/> ${pets[index].contacts}</a>
+                        </div>
+                            `;
         };
       });
     </script>
